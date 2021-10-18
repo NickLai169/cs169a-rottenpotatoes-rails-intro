@@ -7,9 +7,10 @@ class Movie < ActiveRecord::Base
   
   def self.with_ratings(ratings_list)
     if ratings_list.length == 0
-      self.all
+      return self.all_ratings
     else
-      where(rating: ratings_list)
+      return where(rating: ratings_list.keys)
+#       return where(rating: ratings_list)
     end
   end
 end
