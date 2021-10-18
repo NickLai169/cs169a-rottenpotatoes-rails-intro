@@ -15,8 +15,8 @@ class MoviesController < ApplicationController
     
     
     if params[:ratings] == nil
-      @ratings_to_show = []
-#       @ratings_to_show = ['G': "1",'PG': "1",'PG-13': "1",'R': "1"]
+#       @ratings_to_show = []
+      @ratings_to_show = {'G': "1",'PG': "1",'PG-13': "1",'R': "1"}
       session[:ratings] = Hash[@ratings_to_show.map{|x| [x, 1]}]
       @movies = Movie.with_ratings(@ratings_to_show)
 #       redirect_to movies_path(:ratings => session[:ratings], :sortby => params[:sortby])
