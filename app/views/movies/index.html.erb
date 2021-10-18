@@ -41,7 +41,7 @@
           <%= movie.release_date %>
         </td>
         <td>
-          <%= link_to "More about #{movie.title}", movie_path(movie) %>
+          <%= link_to "More about #{movie.title}", movie_path(movie, :sortby => params[:sortby], :ratings => params[:ratings]) %>
         </td>
       </tr>
     <% end %>
