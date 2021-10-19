@@ -38,13 +38,13 @@ class MoviesController < ApplicationController
     
     if params[:sortby] == "release_date"
       session[:sortby] = params[:sortby]
-      @conditional_release_date_css = "hilite text-light bg-warning"
+      @conditional_release_date_css = "hilite bg-warning"
       @movies = @movies.order(:release_date)
     end
     
     if params[:sortby] == "title"
       session[:sortby] = params[:sortby]
-      @conditional_movie_css = "hilite text-light bg-warning"
+      @conditional_movie_css = "hilite bg-warning"
       @movies = @movies.order(:title)
     end
     
