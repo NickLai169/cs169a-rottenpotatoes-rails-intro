@@ -13,22 +13,27 @@ class MoviesController < ApplicationController
     @conditional_movie_css = ""
     @conditional_release_date_css = ""
     
-#     if session[:sortby] != nil:
-#       @params[:sortby] = session[:sortby]
-    
-    
+    @ratings_to_show = ['G','PG', 'PG-13', 'R']
     if params[:ratings] == nil
-#       @ratings_to_show = []
-      @ratings_to_show = {'G': "1",'PG': "1",'PG-13': "1",'R': "1"}
+      puts "a"
+#       @ratings_to_show = {'G': "1",'PG': "1",'PG-13': "1",'R': "1"}
+      @ratings_to_show = ['G','PG', 'PG-13', 'R']
       session[:ratings] = Hash[@ratings_to_show.map{|x| [x, 1]}]
       @movies = Movie.with_ratings(@ratings_to_show)
 #       redirect_to movies_path(:ratings => session[:ratings], :sortby => params[:sortby])
     else
+      puts "b"
       session[:ratings] = params[:ratings]
-      @ratings_to_show = params[:ratings]
+#       @ratings_to_show = params[:ratings].keys
+      
+      if params[:ratings].kind_of?(Array)
+        @ratings_to_show = params[:ratings]
+      else
+        @ratings_to_show = params[:ratings].keys
+      end
+      
       @movies = Movie.with_ratings(@ratings_to_show)
     end
-    
     
     
     if params[:sortby] == "release_date"
@@ -43,12 +48,7 @@ class MoviesController < ApplicationController
       @movies = @movies.order(:title)
     end
     
-#     @sortby = params[:sortby]
-    
-    
-    
-        flash[:notice] = "#{@ratings_to_show}"
-#     flash[:notice] = "#{params[:ratings]}"
+    flash[:notice] = "#{params[:ratings]}"
   end
 
   def new

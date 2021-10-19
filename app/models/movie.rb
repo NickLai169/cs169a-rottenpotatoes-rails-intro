@@ -9,8 +9,8 @@ class Movie < ActiveRecord::Base
     if ratings_list.length == 0
       return self.all_ratings
     else
-      return where(rating: ratings_list.keys)
-#       return where(rating: ratings_list)
+#       return where(rating: ratings_list.keys)
+      return where(rating: ratings_list)
     end
   end
 end
