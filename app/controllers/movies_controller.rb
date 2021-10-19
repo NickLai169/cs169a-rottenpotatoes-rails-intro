@@ -48,7 +48,7 @@ class MoviesController < ApplicationController
       @movies = @movies.order(:title)
     end
     
-    flash[:notice] = "#{params}"
+#     flash[:notice] = "#{params}"
   end
 
   def new
